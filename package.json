@@ -3,11 +3,8 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
-  "bin": {
-    "cdk": "cdk/bin/cdk.js"
-  },
   "scripts": {
-    "build": "remix vite:build",
+    "build": "remix vite:build && cp package*.json build/server && cd build/server && npm install --omit=dev",
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
@@ -23,6 +20,7 @@
     "isbot": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "remix-aws": "^1.1.0",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
@@ -32,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.19",
-    "aws-cdk": "2.142.1",
+    "aws-cdk": "^2.142.1",
     "eslint": "^8.38.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.28.1",
