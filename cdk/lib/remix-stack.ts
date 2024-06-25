@@ -13,7 +13,7 @@ export class RemixStack extends cdk.Stack {
     const backendLambda = new lambda.Function(this, "RemixLoginBackendLambda", {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "index.handler",
-      code: lambda.Code.fromAsset("build/server"),
+      code: lambda.Code.fromAsset("../site/build/server"),
       architecture: lambda.Architecture.ARM_64,
       environment: { NODE_ENV: "production" },
     });
@@ -27,7 +27,7 @@ export class RemixStack extends cdk.Stack {
     });
     new s3Deployment.BucketDeployment(this, "RemixBucketDeployment", {
       destinationBucket: bucket,
-      sources: [s3Deployment.Source.asset("build/client")],
+      sources: [s3Deployment.Source.asset("../site/build/client")],
     });
 
     const bucketOrigin = new origins.S3Origin(bucket);

@@ -1,0 +1,22 @@
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "constructs";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+
+export class BackendStack extends cdk.Stack {
+  public readonly lambdaURL: lambda.FunctionUrl;
+
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const backendLambda = new lambda.Function(this, "RemixLoginBackendLambda", {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromAsset("../site/build/server"),
+      architecture: lambda.Architecture.ARM_64,
+      environment: { NODE_ENV: "production" },
+    });
+    this.lambdaURL = backendLambda.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.NONE,
+    });
+  }
+}

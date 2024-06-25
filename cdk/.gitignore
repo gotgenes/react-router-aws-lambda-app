@@ -1,11 +1,5 @@
 node_modules
 
-/.cache
-/build
-.env
-
 # CDK asset staging directory
 .cdk.staging
 cdk.out
-
-.vite-inspect

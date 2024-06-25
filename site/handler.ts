@@ -4,5 +4,5 @@ import * as build from "virtual:remix/server-build";
 export const handler = createRequestHandler({
   build: build,
   mode: process.env.NODE_ENV,
-  awsProxy: AWSProxy.APIGatewayV2,
+  awsProxy: AWSProxy.FunctionURL,
 });
