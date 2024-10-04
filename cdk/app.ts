@@ -1,7 +1,7 @@
-import * as cdk from "aws-cdk-lib";
-import { BackendStack } from "./stacks/backend";
 import { AssetsStack } from "./stacks/assets";
+import { BackendStack } from "./stacks/backend";
 import { FrontendStack } from "./stacks/frontend";
+import * as cdk from "aws-cdk-lib";
 
 export function buildApp(): void {
   const app = new cdk.App();

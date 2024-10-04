@@ -1,6 +1,6 @@
 import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import { Construct } from "constructs";
 
 export class BackendStack extends cdk.Stack {
   public readonly lambdaURL: lambda.FunctionUrl;

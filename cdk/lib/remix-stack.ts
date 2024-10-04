@@ -1,10 +1,10 @@
 import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
-import * as s3Deployment from "aws-cdk-lib/aws-s3-deployment";
-import * as s3 from "aws-cdk-lib/aws-s3";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as s3Deployment from "aws-cdk-lib/aws-s3-deployment";
+import { Construct } from "constructs";
 
 export class RemixStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
