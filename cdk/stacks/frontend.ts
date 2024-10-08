@@ -1,9 +1,9 @@
 import * as cdk from "aws-cdk-lib";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
-import { FunctionUrl } from "aws-cdk-lib/aws-lambda";
-import { IBucket } from "aws-cdk-lib/aws-s3";
-import { Construct } from "constructs";
+import type { FunctionUrl } from "aws-cdk-lib/aws-lambda";
+import type { IBucket } from "aws-cdk-lib/aws-s3";
+import type { Construct } from "constructs";
 
 export interface FrontendStackProps extends cdk.StackProps {
   bucket: IBucket;
@@ -42,7 +42,7 @@ export class FrontendStack extends cdk.Stack {
     new cdk.CfnOutput(this, "CloudFront Domain", {
       value: distribution.domainName
         ? `https://${distribution.domainName}`
-        : "Something went wrong with the deploy",
+        : "Something went wrong with the deployment",
     });
   }
 }
