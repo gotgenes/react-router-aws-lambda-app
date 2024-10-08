@@ -12,13 +12,21 @@ export function buildApp(): void {
   };
   const props = { env };
   cdk.Tags.of(app).add("app", "RemixApp");
+
   const authStack = new AuthStack(app, "RemixAuth", props);
-  const backendStack = new BackendStack(app, "RemixBackend", props);
+
+  const backendProps = {
+    cognitoUserPoolId: authStack.userPool.userPoolId,
+    ...props,
+  };
+  const backendStack = new BackendStack(app, "RemixBackend", backendProps);
+
   const assetsStack = new AssetsStack(app, "RemixAssets", props);
-  const stackProps = {
+
+  const frontendProps = {
     bucket: assetsStack.bucket,
     lambdaURL: backendStack.lambdaURL,
+    ...props,
   };
-  const frontendProps = { ...props, ...stackProps };
   new FrontendStack(app, "RemixFrontend", frontendProps);
 }
