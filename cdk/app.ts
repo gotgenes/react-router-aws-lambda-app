@@ -1,4 +1,5 @@
 import { AssetsStack } from "./stacks/assets";
+import { AuthStack } from "./stacks/auth";
 import { BackendStack } from "./stacks/backend";
 import { FrontendStack } from "./stacks/frontend";
 import * as cdk from "aws-cdk-lib";
@@ -11,6 +12,7 @@ export function buildApp(): void {
   };
   const props = { env };
   cdk.Tags.of(app).add("app", "RemixApp");
+  const authStack = new AuthStack(app, "RemixAuth", props);
   const backendStack = new BackendStack(app, "RemixBackend", props);
   const assetsStack = new AssetsStack(app, "RemixAssets", props);
   const stackProps = {
