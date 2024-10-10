@@ -17,6 +17,7 @@ export function buildApp(): void {
 
   const backendProps = {
     cognitoUserPoolId: authStack.userPool.userPoolId,
+    cognitoUserPoolClientId: authStack.userPoolClient.userPoolClientId,
     ...props,
   };
   const backendStack = new BackendStack(app, "RemixBackend", backendProps);

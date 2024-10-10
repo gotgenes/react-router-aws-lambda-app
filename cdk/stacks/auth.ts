@@ -4,6 +4,7 @@ import type { Construct } from "constructs";
 
 export class AuthStack extends cdk.Stack {
   public readonly userPool: cognito.UserPool;
+  public readonly userPoolClient: cognito.UserPoolClient;
 
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -25,6 +26,14 @@ export class AuthStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
     this.userPool = userPool;
+
+    const userPoolClient = userPool.addClient("remix-client", {
+      authFlows: { adminUserPassword: true },
+      oAuth: {
+        flows: { authorizationCodeGrant: false, implicitCodeGrant: true },
+      },
+    });
+    this.userPoolClient = userPoolClient;
 
     new cdk.CfnOutput(this, "Cognito User Pool", {
       value:

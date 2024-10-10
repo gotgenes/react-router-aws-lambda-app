@@ -4,6 +4,7 @@ import type { Construct } from "constructs";
 
 interface BackendStackProps extends cdk.StackProps {
   cognitoUserPoolId: string;
+  cognitoUserPoolClientId: string;
 }
 
 export class BackendStack extends cdk.Stack {
@@ -20,6 +21,7 @@ export class BackendStack extends cdk.Stack {
       environment: {
         NODE_ENV: "production",
         COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
+        COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
       },
     });
     this.lambdaURL = backendLambda.addFunctionUrl({
