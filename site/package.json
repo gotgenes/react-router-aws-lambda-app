@@ -1,5 +1,5 @@
 {
-  "name": "remix-amplify-login",
+  "name": "remix-aws-lambda-example",
   "private": true,
   "sideEffects": false,
   "type": "module",
