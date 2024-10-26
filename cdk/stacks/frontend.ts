@@ -30,6 +30,11 @@ export class FrontendStack extends cdk.Stack {
             viewerProtocolPolicy:
               cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           },
+          "logo-*": {
+            origin: bucketOrigin,
+            viewerProtocolPolicy:
+              cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          },
           "/assets/*": {
             origin: bucketOrigin,
             viewerProtocolPolicy:
