@@ -4,7 +4,12 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "build": "cdk synthesize",
+    "deploy": "cdk deploy --all",
+    "deploy:backend": "cdk deploy RemixBackend",
+    "deploy:frontend": "cdk deploy RemixFrontend",
+    "login": "aws sso login"
   },
   "dependencies": {
     "aws-cdk-lib": "2.142.1",
