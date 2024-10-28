@@ -1,0 +1,31 @@
+{
+  "name": "remix-aws-lambda-root",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Root project of remix-aws-lambda",
+  "scripts": {
+    "build": "npm run --workspaces build",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "deploy": "npm run deploy --workspace=cdk",
+    "dev": "npm run dev --workspace=site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gotgenes/remix-aws-lambda-app.git"
+  },
+  "author": "Christopher D. Lasher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gotgenes/remix-aws-lambda-app/issues"
+  },
+  "homepage": "https://github.com/gotgenes/remix-aws-lambda-app#readme",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "prettier": "^3.3.3"
+  },
+  "workspaces": [
+    "site",
+    "cdk"
+  ]
+}
