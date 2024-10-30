@@ -6,7 +6,8 @@
   "description": "Root project of remix-aws-lambda",
   "scripts": {
     "build": "npm run --workspaces build",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint": "prettier --check .",
+    "fix": "prettier --write .",
     "deploy": "npm run deploy --workspace=cdk",
     "login": "npm run login --workspace=cdk",
     "dev": "npm run dev --workspace=site"
