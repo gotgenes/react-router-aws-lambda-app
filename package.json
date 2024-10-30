@@ -8,6 +8,7 @@
     "build": "npm run --workspaces build",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "deploy": "npm run deploy --workspace=cdk",
+    "login": "npm run login --workspace=cdk",
     "dev": "npm run dev --workspace=site"
   },
   "repository": {
