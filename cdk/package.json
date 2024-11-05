@@ -12,21 +12,21 @@
     "login": "aws sso login"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.142.1",
+    "aws-cdk-lib": "^2.165.0",
     "constructs": "^10.4.2",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/node": "^20.17.1",
+    "@types/node": "^20.17.6",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "aws-cdk": "^2.164.1",
+    "aws-cdk": "^2.165.0",
     "eslint": "^8.57.1",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.31.0",
     "prettier": "3.3.3",
-    "tsx": "^4.19.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },
   "engines": {
