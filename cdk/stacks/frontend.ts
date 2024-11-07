@@ -2,11 +2,11 @@ import * as cdk from "aws-cdk-lib";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import type { FunctionUrl } from "aws-cdk-lib/aws-lambda";
-import type { IBucket } from "aws-cdk-lib/aws-s3";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as s3Deployment from "aws-cdk-lib/aws-s3-deployment";
 import type { Construct } from "constructs";
 
 export interface FrontendStackProps extends cdk.StackProps {
-  bucket: IBucket;
   lambdaURL: FunctionUrl;
 }
 
@@ -16,7 +16,16 @@ export class FrontendStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: FrontendStackProps) {
     super(scope, id, props);
 
-    const bucketOrigin = new origins.S3Origin(props.bucket);
+    const bucket = new s3.Bucket(this, "RemixBucket", {
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
+    new s3Deployment.BucketDeployment(this, "RemixBucketDeployment", {
+      destinationBucket: bucket,
+      sources: [s3Deployment.Source.asset("../site/build/client")],
+    });
+    const bucketOrigin = origins.S3BucketOrigin.withOriginAccessControl(bucket);
+
     const distribution = new cloudfront.Distribution(
       this,
       "RemixDistribution",

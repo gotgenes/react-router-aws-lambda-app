@@ -15,10 +15,7 @@ export function buildApp(): void {
   const backendProps = { ...props };
   const backendStack = new BackendStack(app, "RemixBackend", backendProps);
 
-  const assetsStack = new AssetsStack(app, "RemixAssets", props);
-
   const frontendProps = {
-    bucket: assetsStack.bucket,
     lambdaURL: backendStack.lambdaURL,
     ...props,
   };
