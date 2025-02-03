@@ -23,8 +23,6 @@
   },
   "homepage": "https://github.com/gotgenes/remix-aws-lambda-app#readme",
   "devDependencies": {
-    "@remix-run/fs-routes": "^2.15.3",
-    "@remix-run/route-config": "^2.15.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "prettier": "^3.3.3"
   },

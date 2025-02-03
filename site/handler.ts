@@ -1,5 +1,5 @@
 import { AWSProxy, createRequestHandler } from "remix-aws";
-import * as build from "virtual:remix/server-build";
+import * as build from "virtual:react-router/server-build";
 
 export const handler = createRequestHandler({
   build: build,
