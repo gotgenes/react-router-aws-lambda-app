@@ -13,8 +13,8 @@
   "dependencies": {
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
-    "@remix-run/node": "^2.13.1",
-    "@remix-run/react": "^2.13.1",
+    "@remix-run/node": "^2.15.3",
+    "@remix-run/react": "^2.15.3",
     "@remix-run/serve": "^2.13.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -28,7 +28,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.13.1",
+    "@remix-run/dev": "^2.15.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
