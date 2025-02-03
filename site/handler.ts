@@ -1,4 +1,4 @@
-import { AWSProxy, createRequestHandler } from "remix-aws";
+import { AWSProxy, createRequestHandler } from "react-router-aws";
 import * as build from "virtual:react-router/server-build";
 
 export const handler = createRequestHandler({
