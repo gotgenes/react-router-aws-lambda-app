@@ -1,13 +1,13 @@
-# Remix on AWS Lambda
+# React Router on AWS Lambda
 
-This project demonstrates a way to run [Remix](https://remix.run/) on [AWS Lambda](https://aws.amazon.com/lambda/).
+This project demonstrates a way to run [React Router Framework](https://reactrouter.com/) on [AWS Lambda](https://aws.amazon.com/lambda/).
 
 ## Architecture
 
 The project uses the following AWS resources:
 
 - **CloudFront**: Provides the public URL, serves the static assets, and routes requests to the Lambda function.
-- **Lambda**: Runs the Remix application (the backend bundle).
+- **Lambda**: Runs the React Router application (the backend bundle).
 - **S3**: Stores the static assets (the frontend bundle, files in `assets`, and files in `public`).
 
 ## Usage
@@ -51,7 +51,7 @@ Once the roles have been created, you can use a profile with fewer permissions f
 npm install
 ```
 
-This will download the necessary dependencies for CDK and the Remix application.
+This will download the necessary dependencies for CDK and the React Router application.
 
 #### Login to AWS (IAM Identity Center)
 
@@ -89,13 +89,13 @@ npm run deploy
 
 ### Vite-based builds
 
-This project outputs the Remix build directly to the Lambda interface using Vite—the foundation of Remix, itself.
-It takes advantage of Vite virtual modules provided by Remix (see [the `import` in `handler.ts`](https://github.com/gotgenes/remix-aws-lambda-app/blob/main/site/handler.ts#L2)), so that Vite manages the entire build pipeline.
-Other solutions use a second build step to convert the Remix build output to the Lambda interface, creating intermediate build artifacts and multi-step builds.
+This project outputs the React Router build directly to the Lambda interface using Vite—the foundation of React Router, itself.
+It takes advantage of Vite virtual modules provided by React Router (see [the `import` in `handler.ts`](https://github.com/gotgenes/remix-aws-lambda-app/blob/main/site/handler.ts#L2)), so that Vite manages the entire build pipeline.
+Other solutions use a second build step to convert the React Router build output to the Lambda interface, creating intermediate build artifacts and multi-step builds.
 
 ### Direct Lambda integration
 
-This solution uses a minimal adapter from [remix-aws](https://github.com/wingleung/remix-aws) to run Remix on Lambda, in contrast to solutions that run Express and then rely on Lambda-to-Express adapters.
+This solution uses a minimal adapter from [remix-aws](https://github.com/wingleung/remix-aws) to run React Router on Lambda, in contrast to solutions that run Express and then rely on Lambda-to-Express adapters.
 
 ### Minimal architecture
 

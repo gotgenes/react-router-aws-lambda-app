@@ -9,7 +9,7 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
     {
-      name: "remix-apigatewayv2-adapter",
+      name: "react-router-apigatewayv2-adapter",
       apply(_config, env): boolean {
         return env.command === "build" && env?.isSsrBuild === true;
       },

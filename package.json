@@ -1,9 +1,9 @@
 {
-  "name": "remix-aws-lambda-root",
+  "name": "react-router-aws-lambda-root",
   "private": true,
   "type": "module",
-  "version": "1.0.0",
-  "description": "Root project of remix-aws-lambda",
+  "version": "2.0.0",
+  "description": "Root project of react-router-aws-lambda",
   "scripts": {
     "build": "npm run --workspaces build",
     "lint": "prettier --check .",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gotgenes/remix-aws-lambda-app.git"
+    "url": "git+https://github.com/gotgenes/react-router-aws-lambda-app.git"
   },
   "author": "Christopher D. Lasher",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gotgenes/remix-aws-lambda-app/issues"
+    "url": "https://github.com/gotgenes/react-router-aws-lambda-app/issues"
   },
-  "homepage": "https://github.com/gotgenes/remix-aws-lambda-app#readme",
+  "homepage": "https://github.com/gotgenes/react-router-aws-lambda-app#readme",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "prettier": "^3.4.2"
