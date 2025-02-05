@@ -1,8 +1,9 @@
-node_modules
+/node_modules/
 
-/.cache
-/build
+/.cache/
+/.vite-inspect/
 .env
 
-.vite-inspect
-.react-router/
+# React Router
+/.react-router/
+/build/
