@@ -7,8 +7,8 @@
     "cdk": "cdk",
     "build": "cdk synthesize",
     "deploy": "cdk deploy --all",
-    "deploy:backend": "cdk deploy RemixBackend",
-    "deploy:frontend": "cdk deploy RemixFrontend",
+    "deploy:backend": "cdk deploy ReactRouterBackend",
+    "deploy:frontend": "cdk deploy ReactRouterFrontend",
     "login": "aws sso login"
   },
   "dependencies": {

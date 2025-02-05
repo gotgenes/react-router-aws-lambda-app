@@ -16,11 +16,11 @@ export class FrontendStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: FrontendStackProps) {
     super(scope, id, props);
 
-    const bucket = new s3.Bucket(this, "RemixBucket", {
+    const bucket = new s3.Bucket(this, "ReactRouterBucket", {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
-    new s3Deployment.BucketDeployment(this, "RemixBucketDeployment", {
+    new s3Deployment.BucketDeployment(this, "ReactRouterBucketDeployment", {
       destinationBucket: bucket,
       sources: [s3Deployment.Source.asset("../site/build/client")],
     });
@@ -28,7 +28,7 @@ export class FrontendStack extends cdk.Stack {
 
     const distribution = new cloudfront.Distribution(
       this,
-      "RemixDistribution",
+      "ReactRouterDistribution",
       {
         defaultBehavior: {
           origin: new origins.FunctionUrlOrigin(props.lambdaURL),

@@ -10,14 +10,14 @@ export function buildApp(): void {
     region: process.env.CDK_DEFAULT_REGION,
   };
   const props = { env };
-  cdk.Tags.of(app).add("app", "RemixApp");
+  cdk.Tags.of(app).add("app", "ReactRouterApp");
 
   const backendProps = { ...props };
-  const backendStack = new BackendStack(app, "RemixBackend", backendProps);
+  const backendStack = new BackendStack(app, "ReactRouterBackend", backendProps);
 
   const frontendProps = {
     lambdaURL: backendStack.lambdaURL,
     ...props,
   };
-  new FrontendStack(app, "RemixFrontend", frontendProps);
+  new FrontendStack(app, "ReactRouterFrontend", frontendProps);
 }

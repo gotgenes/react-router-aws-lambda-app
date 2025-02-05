@@ -8,12 +8,12 @@ export class AssetsStack extends cdk.Stack {
 
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-    const bucket = new s3.Bucket(this, "RemixBucket", {
+    const bucket = new s3.Bucket(this, "ReactRouterBucket", {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
     this.bucket = bucket;
-    new s3Deployment.BucketDeployment(this, "RemixBucketDeployment", {
+    new s3Deployment.BucketDeployment(this, "ReactRouterBucketDeployment", {
       destinationBucket: bucket,
       sources: [s3Deployment.Source.asset("../site/build/client")],
     });
