@@ -32,6 +32,7 @@ export class FrontendStack extends cdk.Stack {
       {
         defaultBehavior: {
           origin: new origins.FunctionUrlOrigin(props.lambdaURL),
+          cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
         },
         additionalBehaviors: {
           "favicon.ico": {
