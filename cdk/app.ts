@@ -13,7 +13,11 @@ export function buildApp(): void {
   cdk.Tags.of(app).add("app", "ReactRouterApp");
 
   const backendProps = { ...props };
-  const backendStack = new BackendStack(app, "ReactRouterBackend", backendProps);
+  const backendStack = new BackendStack(
+    app,
+    "ReactRouterBackend",
+    backendProps,
+  );
 
   const frontendProps = {
     lambdaURL: backendStack.lambdaURL,
