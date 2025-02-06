@@ -4,8 +4,6 @@ import js from "@eslint/js";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import _import from "eslint-plugin-import";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import react from "eslint-plugin-react";
 import globals from "globals";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -20,13 +18,12 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["!**/.server", "!**/.client", "build/", ".react-router/"],
+    ignores: ["cdk.out/"],
   },
   ...compat.extends("eslint:recommended"),
   {
     languageOptions: {
       globals: {
-        ...globals.browser,
         ...globals.commonjs,
       },
 
@@ -37,48 +34,6 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
-      },
-    },
-  },
-  ...fixupConfigRules(
-    compat.extends(
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime",
-      "plugin:react-hooks/recommended",
-      "plugin:jsx-a11y/recommended",
-    ),
-  ).map((config) => ({
-    ...config,
-    files: ["**/*.{js,jsx,ts,tsx}"],
-  })),
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-
-    plugins: {
-      react: fixupPluginRules(react),
-      "jsx-a11y": fixupPluginRules(jsxA11Y),
-    },
-
-    settings: {
-      react: {
-        version: "detect",
-      },
-
-      formComponents: ["Form"],
-
-      linkComponents: [
-        {
-          name: "Link",
-          linkAttribute: "to",
-        },
-        {
-          name: "NavLink",
-          linkAttribute: "to",
-        },
-      ],
-
-      "import/resolver": {
-        typescript: {},
       },
     },
   },
