@@ -12,12 +12,12 @@
     "login": "aws sso login"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.178.0",
+    "aws-cdk-lib": "^2.178.1",
     "constructs": "^10.4.2",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "aws-cdk": "^2.178.0",
+    "aws-cdk": "^2.178.1",
     "tsx": "^4.19.2"
   },
   "engines": {
