@@ -12,11 +12,21 @@ export class BackendStack extends cdk.Stack {
       "ReactRouterBackendLambda",
       {
         runtime: lambda.Runtime.NODEJS_20_X,
-        handler: "index.handler",
+        handler: "run.sh",
         code: lambda.Code.fromAsset("../site/build/server"),
         architecture: lambda.Architecture.ARM_64,
+        layers: [
+          lambda.LayerVersion.fromLayerVersionArn(
+            this,
+            "ReactRouterLambdaAdapterLayer",
+            `arn:aws:lambda:${this.region}:753240598075:layer:LambdaAdapterLayerArm64:24`,
+          ),
+        ],
         environment: {
           NODE_ENV: "production",
+          PORT: "8080",
+          AWS_LAMBDA_EXEC_WRAPPER: "/opt/bootstrap",
+          AWS_LWA_ENABLE_COMPRESSION: "true",
         },
       },
     );

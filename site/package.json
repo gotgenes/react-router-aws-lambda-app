@@ -4,24 +4,26 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
+    "build": "react-router build && cp package.json run.sh server.js build/server/",
+    "clean": "rm -rf build package-lock.json node_modules",
     "dev": "react-router dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "node server.js ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@react-router/node": "^7.1.5",
     "@react-router/serve": "^7.1.5",
+    "express": "^4.21.2",
     "isbot": "^5.1.22",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.0.0",
-    "react-router-aws": "^2.0.0-beta.1"
+    "react-router": "^7.0.0"
   },
   "devDependencies": {
     "@react-router/dev": "^7.1.5",
     "@tailwindcss/vite": "^4.0.6",
+    "@types/express": "^5.0.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
