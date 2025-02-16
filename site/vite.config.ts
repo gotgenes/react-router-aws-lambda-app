@@ -3,23 +3,32 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-export default defineConfig({
-  plugins: [
-    tailwindcss(),
-    reactRouter(),
-    tsconfigPaths(),
-    {
-      name: "react-router-apigatewayv2-adapter",
-      apply(_config, env): boolean {
-        return env.command === "build" && env?.isSsrBuild === true;
+export default defineConfig(({ command }) => {
+  return {
+    plugins: [
+      tailwindcss(),
+      reactRouter(),
+      tsconfigPaths(),
+      {
+        name: "react-router-apigatewayv2-adapter",
+        apply(_config, env): boolean {
+          return env.command === "build" && env?.isSsrBuild === true;
+        },
+        config: async () => {
+          return {
+            build: {
+              ssr: true,
+              rollupOptions: {
+                input: { index: "handler.ts" },
+                output: {
+                  entryFileNames: "[name].mjs",
+                },
+              },
+            },
+          };
+        },
       },
-      config: async (_config, _env) => {
-        return {
-          build: {
-            ssr: "handler.ts",
-          },
-        };
-      },
-    },
-  ],
+    ],
+    ssr: command === "build" ? { noExternal: true, target: "node" } : {},
+  };
 });
