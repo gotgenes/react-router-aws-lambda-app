@@ -1,5 +1,6 @@
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
+import { builtinModules as builtin } from "node:module";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -16,10 +17,20 @@ export default defineConfig({
       config: async (_config, _env) => {
         return {
           build: {
-            ssr: "handler.ts",
+            ssr: true,
+            rollupOptions: {
+              input: { index: "handler.ts" },
+              output: {
+                entryFileNames: "[name].mjs",
+              },
+            },
           },
         };
       },
     },
   ],
+  ssr: {
+    noExternal: true,
+    external: builtin,
+  },
 });
