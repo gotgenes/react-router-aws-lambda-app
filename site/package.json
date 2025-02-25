@@ -4,11 +4,11 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "react-router build && cp package.json run.sh server.js build/server/",
-    "clean": "rm -rf build package-lock.json node_modules",
+    "build": "react-router build && cp run.sh server.mjs build/server/",
+    "clean": "rm -rf build node_modules",
     "dev": "react-router dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "node server.js ./build/server/index.js",
+    "start": "node server.mjs ./build/server/index.mjs",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
