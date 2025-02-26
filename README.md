@@ -85,17 +85,17 @@ npm run build
 npm run deploy
 ```
 
-## Advantages of this solution
+## Features of this solution
 
 ### Vite-based builds
 
 This project outputs the React Router build directly to the Lambda interface using Vite—the foundation of React Router, itself.
-It takes advantage of Vite virtual modules provided by React Router (see [the `import` in `handler.ts`](https://github.com/gotgenes/remix-aws-lambda-app/blob/main/site/handler.ts#L2)), so that Vite manages the entire build pipeline.
+It takes advantage of Vite virtual modules provided by React Router (see [the `import` in `app.ts`](https://github.com/gotgenes/react-router-aws-lambda-app/blob/main/site/app.ts#L6)), so that Vite manages the entire build pipeline.
 Other solutions use a second build step to convert the React Router build output to the Lambda interface, creating intermediate build artifacts and multi-step builds.
 
-### Direct Lambda integration
+### Lambda integration through AWS Lambda Web Adapter
 
-This solution uses a minimal adapter from [remix-aws](https://github.com/wingleung/remix-aws) to run React Router on Lambda, in contrast to solutions that run Express and then rely on Lambda-to-Express adapters.
+This solution uses [AWS Lambda Web Adapter](https://github.com/awslabs/aws-lambda-web-adapter) to bridge the gap between the Lambda interface and the React Router application.
 
 ### Minimal architecture
 
