@@ -1,4 +1,3 @@
-import { AssetsStack } from "./stacks/assets";
 import { BackendStack } from "./stacks/backend";
 import { FrontendStack } from "./stacks/frontend";
 import * as cdk from "aws-cdk-lib";
