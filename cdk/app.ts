@@ -20,6 +20,7 @@ export function buildApp(): void {
 
   const frontendProps = {
     lambdaURL: backendStack.lambdaURL,
+    originVerificationToken: backendStack.originVerificationToken,
     ...props,
   };
   new FrontendStack(app, "ReactRouterFrontend", frontendProps);

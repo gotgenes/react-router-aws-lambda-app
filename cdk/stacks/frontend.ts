@@ -4,10 +4,12 @@ import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import type { FunctionUrl } from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3Deployment from "aws-cdk-lib/aws-s3-deployment";
+import type { IStringParameter } from "aws-cdk-lib/aws-ssm";
 import type { Construct } from "constructs";
 
 export interface FrontendStackProps extends cdk.StackProps {
   lambdaURL: FunctionUrl;
+  originVerificationToken: IStringParameter;
 }
 
 export class FrontendStack extends cdk.Stack {
@@ -31,7 +33,12 @@ export class FrontendStack extends cdk.Stack {
       "ReactRouterDistribution",
       {
         defaultBehavior: {
-          origin: new origins.FunctionUrlOrigin(props.lambdaURL),
+          origin: new origins.FunctionUrlOrigin(props.lambdaURL, {
+            customHeaders: {
+              "x-origin-verification-token":
+                props.originVerificationToken.stringValue,
+            },
+          }),
           cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
         },
         additionalBehaviors: {

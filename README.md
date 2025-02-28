@@ -43,6 +43,16 @@ Specifically, it will need enough permissions to create new IAM roles—at least
 Typically this is an administrator role.
 Once the roles have been created, you can use a profile with fewer permissions for subsequent deployments.
 
+### Set the Origin Verification Secret
+
+You will need to set a secret value in AWS Systems Manager Parameter Store to use as the origin verification secret.
+This will ensure the Lambda only handles requests from CloudFront, and rejects requests from other sources, such as directly from the Lambda function's URL.
+
+```sh
+TOKEN_VALUE="$(openssl rand -base64 32)"
+aws ssm put-parameter --name /react-router/origin-verification-token --tags Key=app,Value=ReactRouterApp --type String --value "$TOKEN_VALUE"
+```
+
 ### Deployment
 
 #### Install dependencies
