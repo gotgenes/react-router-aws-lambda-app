@@ -27,12 +27,14 @@ export class BackendStack extends cdk.Stack {
           PORT: "8080",
           AWS_LAMBDA_EXEC_WRAPPER: "/opt/bootstrap",
           AWS_LWA_ENABLE_COMPRESSION: "true",
+          AWS_LWA_INVOKE_MODE: "response_stream",
         },
       },
     );
 
     this.lambdaURL = backendLambda.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
+      invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
   }
 }
