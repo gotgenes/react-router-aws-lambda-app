@@ -85,6 +85,22 @@ npm run build
 npm run deploy
 ```
 
+### Testing
+
+This project contains some end-to-end tests via [Playwright](https://playwright.dev/).
+
+Execute them against a local server with:
+
+```sh
+npm run test
+```
+
+You can also execute them against the deployed stack with:
+
+```sh
+BASE_URL=$CLOUDFRONT_URL_OUTPUT_BY_CDK npm run test
+```
+
 ## Features of this solution
 
 ### Vite-based builds
