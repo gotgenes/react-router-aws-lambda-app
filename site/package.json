@@ -4,7 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "react-router build && cp run.sh server.mjs build/server/",
+    "build": "./scripts/build.sh",
     "clean": "rm -rf build node_modules",
     "dev": "react-router dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",

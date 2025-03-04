@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Short-circuit the type-checking of the built output.
-const BUILD_PATH = process.argv[2] || "./build/server/index.mjs";
+const BUILD_PATH = process.argv[2] || "./build/server/index.js";
 const PORT = Number.parseInt(process.env.PORT || "3000");
 
 const app = await import(BUILD_PATH).then((mod) => mod.app);
