@@ -8,13 +8,12 @@
     "clean": "rm -rf build node_modules",
     "dev": "react-router dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "node server.mjs ./build/server/index.mjs",
+    "start": "NODE_ENV=production react-router-serve build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@react-router/node": "^7.1.5",
     "@react-router/serve": "^7.1.5",
-    "express": "^4.21.2",
     "isbot": "^5.1.22",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
