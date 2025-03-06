@@ -4,7 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "./scripts/build.sh",
+    "build": "NODE_ENV=production react-router build",
     "clean": "rm -rf build node_modules",
     "dev": "react-router dev",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
