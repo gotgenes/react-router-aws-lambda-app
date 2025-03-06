@@ -5,8 +5,22 @@ services:
     build:
       context: .
       dockerfile: site/Dockerfile
+      target: app
     ports:
       - "8080:8080"
     environment:
       NODE_ENV: "production"
       PORT: "8080"
+  lambda:
+    build:
+      context: .
+      dockerfile: site/Dockerfile
+      target: lambda-web-adapter
+    ports:
+      - "9090:9090"
+    environment:
+      NODE_ENV: "production"
+      PORT: "9090"
+      AWS_LAMBDA_EXEC_WRAPPER: "/opt/bootstrap"
+      AWS_LWA_ENABLE_COMPRESSION: "true"
+      AWS_LWA_INVOKE_MODE: "response_stream"
