@@ -10,21 +10,20 @@ export class BackendStack extends cdk.Stack {
 
   constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
-    const backendLambda = new lambda.Function(
+    const image = lambda.DockerImageCode.fromImageAsset(
+      path.join(path.dirname(fileURLToPath(import.meta.url)), "..", ".."),
+      {
+        file: path.join("site", "Dockerfile"),
+        platform: Platform.LINUX_ARM64,
+      },
+    );
+
+    const backendLambda = new lambda.DockerImageFunction(
       this,
       "ReactRouterBackendLambda",
       {
-        runtime: lambda.Runtime.NODEJS_20_X,
-        handler: "run.sh",
-        code: lambda.Code.fromAsset("../site/build/server"),
+        code: image,
         architecture: lambda.Architecture.ARM_64,
-        layers: [
-          lambda.LayerVersion.fromLayerVersionArn(
-            this,
-            "ReactRouterLambdaAdapterLayer",
-            `arn:aws:lambda:${this.region}:753240598075:layer:LambdaAdapterLayerArm64:24`,
-          ),
-        ],
         environment: {
           NODE_ENV: "production",
           PORT: "8080",
@@ -38,15 +37,7 @@ export class BackendStack extends cdk.Stack {
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
-    this.exportValue(lambdaURL.url);
 
-    const image = lambda.DockerImageCode.fromImageAsset(
-      path.join(path.dirname(fileURLToPath(import.meta.url)), "..", ".."),
-      {
-        file: path.join("site", "Dockerfile"),
-        platform: Platform.LINUX_ARM64,
-      },
-    );
     const dockerBackendLambda = new lambda.DockerImageFunction(
       this,
       "ReactRouterDockerBackendLambda",
