@@ -37,27 +37,5 @@ export class BackendStack extends cdk.Stack {
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
-
-    const dockerBackendLambda = new lambda.DockerImageFunction(
-      this,
-      "ReactRouterDockerBackendLambda",
-      {
-        code: image,
-        architecture: lambda.Architecture.ARM_64,
-        environment: {
-          NODE_ENV: "production",
-          PORT: "8080",
-          AWS_LAMBDA_EXEC_WRAPPER: "/opt/bootstrap",
-          AWS_LWA_ENABLE_COMPRESSION: "true",
-          AWS_LWA_INVOKE_MODE: "response_stream",
-        },
-      },
-    );
-
-    const dockerLambdaURL = dockerBackendLambda.addFunctionUrl({
-      authType: lambda.FunctionUrlAuthType.NONE,
-      invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
-    });
-    this.exportValue(dockerLambdaURL.url);
   }
 }
