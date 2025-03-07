@@ -33,7 +33,7 @@ export class BackendStack extends cdk.Stack {
         },
       },
     );
-    const lambdaURL = backendLambda.addFunctionUrl({
+    this.lambdaURL = backendLambda.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
@@ -54,9 +54,10 @@ export class BackendStack extends cdk.Stack {
       },
     );
 
-    this.lambdaURL = dockerBackendLambda.addFunctionUrl({
+    const dockerLambdaURL = dockerBackendLambda.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
+    this.exportValue(dockerLambdaURL.url);
   }
 }
