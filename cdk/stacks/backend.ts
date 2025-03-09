@@ -15,6 +15,7 @@ export class BackendStack extends cdk.Stack {
       {
         file: path.join("site", "Dockerfile"),
         platform: Platform.LINUX_ARM64,
+        target: "lambda-web-adapter",
       },
     );
 
