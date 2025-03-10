@@ -25,4 +25,5 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.9.0 /lambda-adapter /opt
 COPY --from=app-build /build/site/package.json ./
 COPY --from=app-build /build/node_modules node_modules/
 COPY --from=app-build /build/site/build/server build/server/
+ENV AWS_LWA_READINESS_CHECK_PATH="/health-check"
 CMD ["npm", "run", "start"]
