@@ -5,7 +5,7 @@
   "version": "4.0.0",
   "description": "Root project of react-router-aws-lambda",
   "scripts": {
-    "build": "npm run --workspaces build",
+    "build": "npm run build --workspace=site && docker compose build && npm run build --workspace=cdk",
     "lint": "prettier --check .",
     "fix": "prettier --write .",
     "deploy": "npm run deploy --workspace=cdk",
