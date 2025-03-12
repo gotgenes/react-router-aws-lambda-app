@@ -6,9 +6,7 @@
   "scripts": {
     "cdk": "cdk",
     "build": "cdk synthesize",
-    "deploy": "cdk deploy --all",
-    "deploy:backend": "cdk deploy ReactRouterBackend",
-    "deploy:frontend": "cdk deploy ReactRouterFrontend",
+    "deploy": "./scripts/deploy.sh --all",
     "login": "aws sso login"
   },
   "dependencies": {
