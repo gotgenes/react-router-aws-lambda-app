@@ -2,6 +2,7 @@ name: react-router-aws-lambda
 
 services:
   app:
+    platform: linux/arm64
     build:
       context: .
       dockerfile: site/Dockerfile
@@ -12,6 +13,7 @@ services:
       NODE_ENV: "production"
       PORT: "8080"
   lambda:
+    platform: linux/arm64
     build:
       context: .
       dockerfile: site/Dockerfile
