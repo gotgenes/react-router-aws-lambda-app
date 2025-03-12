@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.1.0 (2025-03-11)
+
+Add a route `/health-check` for readiness checks.
+
 ## v4.0.0 (2025-03-09)
 
 Switch to a Docker container image for distribution to AWS Lambda.
