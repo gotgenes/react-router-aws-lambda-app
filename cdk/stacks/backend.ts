@@ -1,23 +1,19 @@
 import * as cdk from "aws-cdk-lib";
-import { Platform } from "aws-cdk-lib/aws-ecr-assets";
+import type { IRepository } from "aws-cdk-lib/aws-ecr";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import type { Construct } from "constructs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+
+export interface BackendStackProps extends cdk.StackProps {
+  containerRepository: IRepository;
+}
 
 export class BackendStack extends cdk.Stack {
   public readonly lambdaURL: lambda.FunctionUrl;
 
-  constructor(scope: Construct, id: string, props: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: BackendStackProps) {
     super(scope, id, props);
-    const image = lambda.DockerImageCode.fromImageAsset(
-      path.join(path.dirname(fileURLToPath(import.meta.url)), "..", ".."),
-      {
-        file: path.join("site", "Dockerfile"),
-        platform: Platform.LINUX_ARM64,
-        target: "lambda-web-adapter",
-      },
-    );
+    const repository = props.containerRepository;
+    const image = lambda.DockerImageCode.fromEcr(repository);
 
     const backendLambda = new lambda.DockerImageFunction(
       this,
