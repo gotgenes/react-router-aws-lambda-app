@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.0.0 (2025-03-11)
+
+Separate building and publishing the Docker image to Amazon Elastic Container Registry (ECR) from deploying the backend stack.
+
 ## v4.1.0 (2025-03-11)
 
 Add a route `/health-check` for readiness checks.
