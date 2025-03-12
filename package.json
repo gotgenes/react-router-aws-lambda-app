@@ -5,12 +5,15 @@
   "version": "4.1.0",
   "description": "Root project of react-router-aws-lambda",
   "scripts": {
-    "build": "npm run build --workspace=site && docker compose build && npm run build --workspace=cdk",
-    "lint": "prettier --check .",
-    "fix": "prettier --write .",
+    "build": "./scripts/build.sh",
+    "publish-docker": "./scripts/publish-docker-image.sh",
+    "build-publish-deploy": "npm run build && npm run publish-docker && npm run deploy",
     "deploy": "npm run deploy --workspace=cdk",
     "login": "npm run login --workspace=cdk",
+    "login-docker": "./scripts/docker-login.sh",
     "dev": "npm run dev --workspace=site",
+    "lint": "prettier --check .",
+    "fix": "prettier --write .",
     "test": "playwright test"
   },
   "repository": {
