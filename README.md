@@ -53,7 +53,7 @@ npm install
 
 This will download the necessary dependencies for CDK and the React Router application.
 
-#### Login to AWS (IAM Identity Center)
+#### Log in to AWS (IAM Identity Center)
 
 If you are using IAM Identity Center as recommended above, you can log in with the following command:
 
@@ -73,16 +73,39 @@ npm run cdk bootstrap --workspace=cdk
 
 Refer to the [CDK bootstrapping documentation](https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html) for more information.
 
+#### Authenticate the Docker client to Amazon Elastic Container Registry (ECR) (first time only)
+
+Your local Docker client will need to authenticate with Amazon ECR prior to publishing Docker images used for the Lambda function.
+You can authenticate with the following command:
+
+```sh
+npm run login-docker
+```
+
 #### Build the site
 
 ```sh
 npm run build
 ```
 
+#### Publish the Docker image
+
+```sh
+npm run publish-docker
+```
+
 #### Deploy the stack
 
 ```sh
 npm run deploy
+```
+
+#### Build, publish, and deploy in one command
+
+Alternatively, you can use the following command to run the build, publish, and deploy steps in one command:
+
+```sh
+npm run build-publish-deploy
 ```
 
 ### Testing
