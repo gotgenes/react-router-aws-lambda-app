@@ -9,6 +9,7 @@ The project uses the following AWS resources:
 - **CloudFront**: Provides the public URL, serves the static assets, and routes requests to the Lambda function.
 - **Lambda**: Runs the React Router application (the backend bundle).
 - **S3**: Stores the static assets (the frontend bundle, files in `assets`, and files in `public`).
+- **SSM Parameter Store**: Holds the Docker image digest used when deploying the Lambda function.
 
 ## Usage
 
@@ -21,7 +22,7 @@ You need to have the [AWS CLI](https://aws.amazon.com/cli/) installed and config
 #### IAM Identity Center (Recommended)
 
 [AWS recommends](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-authentication.html) using [IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html) to access short-term credentials programmatic access to AWS services (e.g., AWS CLI, or using the CDK locally).
-Refer to [AWS's documentation on configuring authentication with IAM Identity Center](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) if you have not yet set it up.
+Refer to [AWS CLI's documentation on configuring authentication with IAM Identity Center](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) if you have not yet set it up.
 The `npm run login` script uses this method of authentication.
 
 #### CDK and AWS CLI environment variables
@@ -30,9 +31,11 @@ This project uses the [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/c
 It will install the CDK CLI as a development dependency, so you don't need to install it globally, however, you will want to set the following environment variables:
 
 ```sh
+export AWS_PROFILE=admin                 # or your preferred profile
+# Optionally, you can set the following environment variables,
+# otherwise they will be derived from the AWS profile set above.
 export CDK_DEFAULT_ACCOUNT=123456789012  # your AWS account number
 export CDK_DEFAULT_REGION=us-east-1      # or your preferred region
-export AWS_PROFILE=admin                 # or your preferred profile
 ```
 
 You can use the `aws sts get-caller-identity` command to get your account number.
@@ -42,6 +45,8 @@ It is important that the AWS profile you use has the necessary permissions to cr
 Specifically, it will need enough permissions to create new IAM roles—at least on first deployment.
 Typically this is an administrator role.
 Once the roles have been created, you can use a profile with fewer permissions for subsequent deployments.
+
+If you don't want to set these environment variables manually, consider using a tool like [mise](https://mise.jdx.dev/environments/) or [direnv](https://direnv.net/).
 
 ### Deployment
 
@@ -73,7 +78,7 @@ npm run cdk bootstrap --workspace=cdk
 
 Refer to the [CDK bootstrapping documentation](https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html) for more information.
 
-#### Authenticate the Docker client to Amazon Elastic Container Registry (ECR) (first time only)
+#### Authenticate the Docker client to Amazon Elastic Container Registry (ECR)
 
 Your local Docker client will need to authenticate with Amazon ECR prior to publishing Docker images used for the Lambda function.
 You can authenticate with the following command:
@@ -125,12 +130,6 @@ BASE_URL=$CLOUDFRONT_URL_OUTPUT_BY_CDK npm run test
 ```
 
 ## Features of this solution
-
-### Vite-based builds
-
-This project outputs the React Router build directly to the Lambda interface using Vite—the foundation of React Router, itself.
-It takes advantage of Vite virtual modules provided by React Router (see [the `import` in `app.ts`](https://github.com/gotgenes/react-router-aws-lambda-app/blob/main/site/app.ts#L6)), so that Vite manages the entire build pipeline.
-Other solutions use a second build step to convert the React Router build output to the Lambda interface, creating intermediate build artifacts and multi-step builds.
 
 ### Lambda integration through AWS Lambda Web Adapter
 
