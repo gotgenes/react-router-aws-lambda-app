@@ -2,22 +2,24 @@ name: react-router-aws-lambda
 
 services:
   app:
-    platform: linux/arm64
     build:
       context: .
       dockerfile: site/Dockerfile
       target: app
+      tags:
+        - react-router-aws-lambda-app:latest
     ports:
       - "8080:8080"
     environment:
       NODE_ENV: "production"
       PORT: "8080"
   lambda:
-    platform: linux/arm64
     build:
       context: .
       dockerfile: site/Dockerfile
       target: lambda-web-adapter
+      tags:
+        - react-router-aws-lambda-lambda:latest
     ports:
       - "9090:9090"
     environment:
