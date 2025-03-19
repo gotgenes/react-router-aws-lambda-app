@@ -42,6 +42,8 @@ export class BackendStack extends cdk.Stack {
           AWS_LWA_ENABLE_COMPRESSION: "true",
           AWS_LWA_INVOKE_MODE: "response_stream",
         },
+        memorySize: 256,
+        timeout: cdk.Duration.seconds(10),
       },
     );
     this.lambdaURL = backendLambda.addFunctionUrl({
