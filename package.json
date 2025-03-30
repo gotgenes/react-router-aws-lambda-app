@@ -2,7 +2,7 @@
   "name": "react-router-aws-lambda-root",
   "private": true,
   "type": "module",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Root project of react-router-aws-lambda",
   "scripts": {
     "build": "./scripts/build.sh",
