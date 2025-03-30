@@ -14,7 +14,8 @@
     "dev": "npm run dev --workspace=site",
     "lint": "prettier --check .",
     "fix": "prettier --write .",
-    "test": "playwright test"
+    "test": "playwright test",
+    "release": "commit-and-tag-version"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "@types/node": "^22.13.14",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
+    "commit-and-tag-version": "^12.5.0",
     "eslint": "^9.23.0",
     "eslint-import-resolver-typescript": "^3.10.0",
     "eslint-plugin-import": "^2.31.0",
@@ -45,5 +47,10 @@
   "workspaces": [
     "site",
     "cdk"
-  ]
+  ],
+  "commit-and-tag-version": {
+    "scripts": {
+      "postchangelog": "npm run fix"
+    }
+  }
 }
