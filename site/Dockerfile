@@ -1,4 +1,4 @@
-ARG NODE_VERSION="20"
+ARG NODE_VERSION="22"
 ARG NODE_BASE="public.ecr.aws/docker/library/node:${NODE_VERSION}-slim"
 
 FROM ${NODE_BASE} AS dependencies
