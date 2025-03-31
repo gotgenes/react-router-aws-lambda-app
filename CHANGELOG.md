@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [6.0.0](https://github.com/gotgenes/react-router-aws-lambda-app/compare/v5.1.0...v6.0.0) (2025-03-31)
+
+### ⚠ BREAKING CHANGES
+
+- Major version upgrade of dependencies.
+- Upgrade to Node v22.
+
+### Features
+
+- Major version upgrade of dependencies. ([cdb76bb](https://github.com/gotgenes/react-router-aws-lambda-app/commit/cdb76bb09dcdf4123341f178bb632a450aa8ddf9))
+- Upgrade to Node v22. ([a2435bb](https://github.com/gotgenes/react-router-aws-lambda-app/commit/a2435bb8a9c50f4b58bb1cf5507ab64c8e860777))
+
 ## [5.1.0](https://github.com/gotgenes/react-router-aws-lambda-app/compare/v5.0.0...v5.1.0) (2025-03-30)
 
 ### Features
